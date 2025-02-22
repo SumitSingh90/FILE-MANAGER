@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In & Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .toggle {
+            margin-top: 15px;
+            color: blue;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 id="formTitle">Sign In</h2>
+    <form id="authForm" action="/submit" method="post">
+        <input type="text" id="nameField" placeholder="Full Name" style="display: none;" name="fullname">
+        <input type="text" id="text" placeholder="id" required name="id">
+        <input type="password" id="password" placeholder="Password" required name="password">
+        <button type="submit">Submit</button>
+    </form>
+    <p class="toggle" onclick="toggleForm()">Don't have an account? Sign Up</p>
+</div>
+
+<script>
+    function toggleForm() {
+        const formTitle = document.getElementById("formTitle");
+        const nameField = document.getElementById("nameField");
+        const toggleText = document.querySelector(".toggle");
+
+        if (formTitle.innerText === "Sign In") {
+            formTitle.innerText = "Sign Up";
+            nameField.style.display = "block";
+            toggleText.innerText = "Already have an account? Sign In";
+        } else {
+            formTitle.innerText = "Sign In";
+            nameField.style.display = "none";
+            toggleText.innerText = "Don't have an account? Sign Up";
+        }
+    }
+</script>
+
+</body>
+</html>

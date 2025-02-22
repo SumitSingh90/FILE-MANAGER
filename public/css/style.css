@@ -1,0 +1,83 @@
+.access{
+    border-style: solid;
+    border-radius:2px;
+    width:100px;
+    height: 60px;
+}
+/* Reset default margin & padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Page title */
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 26px;
+    color: #333;
+}
+
+/* Container for all files */
+.file-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+}
+
+/* Each file card */
+.file-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+    transition: transform 0.2s;
+}
+
+.file-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Styling for file previews */
+.file-preview {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* Specific styling for different file types */
+.pdf {
+    height: 400px;
+    border: 1px solid #ccc;
+}
+
+.video {
+    height: 250px;
+}
+
+.audio {
+    width: 90%;
+    margin-top: 10px;
+}
+
+/* Download button */
+.download-btn {
+    display: block;
+    text-decoration: none;
+    color: white;
+    background: #007bff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.download-btn:hover {
+    background: #0056b3;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uploaded Files</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/script.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <h1>Uploaded Files</h1>
+
+    <div class="file-container">
+        <% for (let i = 0; i < response.length; i++) { %>
+            <div class="file-card">
+                <% let fileExtension = response[i].file_path.split('.').pop().toLowerCase(); %>
+
+                <% if (["jpg", "jpeg", "png", "gif", "bmp", "webp"].includes(fileExtension)) { %>
+                    <img src="<%= response[i].file_path %>" class="file-preview" alt="Image">
+                <% } else if (fileExtension === "pdf") { %>
+                    <iframe src="<%= response[i].file_path %>" class="file-preview pdf"></iframe>
+                <% } else if (["mp4", "webm", "ogg"].includes(fileExtension)) { %>
+                    <video controls class="file-preview video">
+                        <source src="<%= response[i].file_path %>" type="video/<%= fileExtension %>">
+                        Your browser does not support the video tag.
+                    </video>
+                <% } else if (["mp3", "wav", "ogg"].includes(fileExtension)) { %>
+                    <audio controls class="file-preview audio">
+                        <source src="<%= response[i].file_path %>" type="audio/<%= fileExtension %>">
+                        Your browser does not support the audio tag.
+                    </audio>
+                <% } else { %>
+                    <a href="<%= response[i].file_path %>" download class="download-btn">
+                        Download <%= response[i].file_path.split('/').pop() %>
+                    </a>
+                <% } %>
+            </div>
+        <% } %>
+    </div>
+
+</body>
+</html>
