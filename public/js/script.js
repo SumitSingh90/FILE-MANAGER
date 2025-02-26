@@ -6,7 +6,6 @@ document.querySelector(".access").addEventListener('click',()=>{
         contentType: "application/json", 
         data: JSON.stringify(userData),
         success: function(response) {
-            console.log("done");
         }
             ,
         error: function(xhr, status, error) {

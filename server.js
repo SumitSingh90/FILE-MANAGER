@@ -4,7 +4,7 @@ const path = require("path");
 const connection = require("./connection");
 const multer = require("multer");
 const bodyParser = require("body-parser");
-
+const fs = require("fs");
 app.set("view engine", "ejs");
 app.set('views', path.join(__dirname, 'views'));
 
@@ -143,7 +143,29 @@ app.get("/files", (req, res) => {
     res.render("files", { response: response });
 });
 
+app.delete("/delete", (req, res) => {
+    const fileUrl = req.body.file;
 
+    const fileName = path.basename(fileUrl);
+    const fullPath = path.join(__dirname, "upload", fileName).replace(/\\/g, "\\\\");
+
+        try {
+            fs.unlinkSync(fullPath);
+            const deleteQuery = "DELETE FROM files WHERE file_path = ?";
+            connection.query(deleteQuery,[fileName], (err, result) => {
+                if (err) {
+                   console.log(err);
+                }
+               
+                res.send("deleted sucessfully!");
+            });
+
+
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({ error: "Error deleting file", details: err.message });
+        }
+});
 app.listen(3000, () => {
     console.log("server is running at port 3000");
 });
